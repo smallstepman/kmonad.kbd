@@ -87,6 +87,7 @@
                                                                                                       left   down   rght
 )
 
+;; arrow keys, home/end, escape, and bunch of keybindings designated to emacs
 (deflayer navigation
                                                                                                             _
   _           _      _      _      _      _       _        _      _      _      _      _       _     _      _      _
@@ -98,6 +99,7 @@
                                                                                                      _      _      _
 )
 
+;; symbols
 (deflayer symbold
                                                                                                           _
   _           _      _      _      _      _       _      _      _      _      _      _       _     _      _      _
@@ -110,6 +112,7 @@
 
 )
 
+;; numbers
 (deflayer numberd
                                                                                                           _
   _           _      _      _      _      _       _      _      _      _      _      _       _     _      _      _
@@ -121,6 +124,7 @@
                                                                                                    _      _      _
 )
 
+;; emacs lsp and code navigation layer
 (deflayer coded
                                                                                                           _
   _           _      _      _      _      _       _      _      _      _      _      _       _     _      _      _
