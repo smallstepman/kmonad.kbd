@@ -25,7 +25,8 @@
   buffers           (tap-hold 140 j lsft)
   return/apostrophe (tap-hold 140 ret ')
   paste S-ins
-
+  ;; hyun  (multi-tap 160 - 160 \_ +) ;; hyphen underline
+  ;; seco  (multi-tap 160 p P) ;; semicolon colon
   ;; emacs land
   xf/ra             (tap-hold 140 f21 ralt)  ;; avy go to timer
   e/ws1 #(esc P5 spc P5 tab P5 1 )
@@ -63,6 +64,10 @@
   e/lsp C-A-f14 ;; lsp
   ;; e/l/r C-A-17  ;; lsp run
   e/l/r #(C-c P5 C-c P5 C-s P5 ret)  ;; lsp run
+  e/l/t #(C-c P5 C-c P5 C-f P5 o )  ;; lsp test
+  e/l/c #(C-c P5 C-c)  ;; lsp run
+  e/l/d C-A-17)  ;; lsp show docs
+  e/l/u C-A-18)  ;; lsp show docs
 )
 
 (defsrc
@@ -79,8 +84,8 @@
 (deflayer colemak
                                                                                                              M-A-f14
   esc         f1     f2     f3     f4     f5      f6     f7     f8     f9     f10    f11     f12   M-A-f13   M-A-f15    M-A-f16
-  grv         M-1    M-2    M-3    M-4    M-5     M-6    M-7    M-8    M-9    M-0    M-=     M--             =
-  tab         q      w      e      r      t       esc    y      u      i      o      p       -               \
+  grv         M-1    M-2    M-3    M-4    M-5     M-6    M-7    M-8    M-9    M-0    \_      +               \
+  tab         q      w      e      r      t       esc    y      u      i      o      p       -               =
   @bspc/sft   @lctr  @lsfr  @lalt  @lsft  g       esc    h      @rsft  @rsfr  @ralt  @rctr                   @return/apostrophe
   @del/symbol        z      x      c      v       b      esc    n      m      ,      .                       @slash/number
               f12    @e/f/e @e/t/t                @navi                @xf/ra ssrq   rctl             pgup   up     pgdn
@@ -130,8 +135,8 @@
   _           _      _      _      _      _       _      _      _      _      _      _       _     _      _      _
   _           _      _      _      _      _       _      _      _      _      _      _       _            _
   _           _      _      _      _      _       _      _      _      _      _      _       +            +
-  _           1      @e/l/r      3      4      5       _      6      7      8      9      0                    =
-  _                  _      _      _      _       _      _      _      _      _      _                    _
+  _           1      @e/l/r 3      @e/l/t 5       _      6      7      8      9      0                    =
+  _                  _      _      @e/l/c _       _      _      _      _      _      _                    _
               _      _      _                     _                    _      _      _             _      _      _
                                                                                                    _      _      _
 )
