@@ -66,8 +66,8 @@
   e/l/r #(C-c P5 C-c P5 C-s P5 ret)  ;; lsp run
   e/l/t #(C-c P5 C-c P5 C-f P5 o )  ;; lsp test
   e/l/c #(C-c P5 C-c)  ;; lsp run
-  e/l/d C-A-17)  ;; lsp show docs
-  e/l/u C-A-18)  ;; lsp show docs
+  e/l/d C-A-f17  ;; lsp show docs
+  e/l/u C-A-f18  ;; lsp show docs
 )
 
 (defsrc
