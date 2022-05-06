@@ -1,0 +1,141 @@
+(defcfg
+  input  (iokit-name)
+  output (kext)
+)
+
+(defalias
+  navigation        (layer-toggle navigation)
+  symbol            (layer-toggle symbold)
+  number            (layer-toggle numberd)
+  code              (layer-toggle coded)
+  navi              (tap-hold 140 spc  @navigation)
+  del/symbol        (tap-hold 140 del  @symbol)
+  slash/number      (tap-hold 140 /    @number)
+  bspc/sft          (tap-hold 140 bspc @code)
+  ;; slash/sft      (tap-hold 140 / lsft)
+  ;; bspc/sft       (tap-hold 140 bspc lsft)
+  lctr              (tap-hold 140 a lmet)
+  lsfr              (tap-hold 140 s lctl)
+  lalt              (tap-hold 140 d lalt)
+  lsft              (tap-hold 140 f lsft)
+  rctr              (tap-hold 140 ; lmet)
+  ralt              (tap-hold 140 l lctl)
+  rsfr              (tap-hold 140 k lalt)
+  rsft              (tap-hold 140 j lsft)
+  buffers           (tap-hold 140 j lsft)
+  return/apostrophe (tap-hold 140 ret ')
+  paste S-ins
+  ;; hyun           (multi-tap 160 - 160 \_ +) ;; hyphen underline
+  ;; seco           (multi-tap 160 p P) ;; semicolon colon
+  ;; emacs          land
+  xf/ra             (tap-hold 140 f21 ralt)  ;; avy go to timer
+  e/ws1             #(esc P8 spc P8 tab P8 1 )
+  e/ws2             #(esc P8 spc P8 tab P8 2 )
+  e/ws3             #(esc P8 spc P8 tab P8 3 )
+  e/ws4             #(esc P8 spc P8 tab P8 4 )
+  e/ws5             #(esc P8 spc P8 tab P8 5 )
+  e/ws6             #(esc P8 spc P8 tab P8 6 )
+  e/ws7             #(esc P8 spc P8 tab P8 7 )
+  e/ws8             #(esc P8 spc P8 tab P8 8 )
+  e/ws9             #(esc P8 spc P8 tab P8 9 )
+  e/ws0             #(esc P8 spc P8 tab P8 0 )
+  e/w/k             A-f15   ;; workspace kill
+  e/w/p             A-f14   ;; workspace previous
+  e/w/n             A-f13   ;; workspace next
+
+  e/kil             A-f22   ;; kill window or workspace
+  e/muc             A-f20   ;; multiple cursors
+  e/m-x             A-x     ;; alt x
+  e/buf             A-f18   ;; list of buffers
+  e/b/n             A-f17   ;; buffer next
+  e/b/p             A-f16   ;; buffer previous
+  e/b/k             A-f21   ;; buffer kill
+  e/f/s             C-A-f13 ;; file save
+  e/clk             C-A-f18 ;; org clock
+  e/git             C-A-f15 ;; magit
+  e/win             C-A-f16 ;; switch window
+  e/t/t             f14     ;; terminal toggle
+  e/f/e             f13     ;; file explorer --- underutilized
+  e/sod             f7      ;; scroll other window down
+  e/sou             f8      ;; scroll other window up
+  e/c/l             f1      ;; goto last change
+  e/c/r             f2      ;; goto last change reversed
+
+  e/lsp             C-A-f14 ;; lsp
+  ;; e/            l/r C-A-17  ;; lsp run
+  e/l/r             #(C-c P5 C-c P5 C-s P5 ret)  ;; lsp run
+  e/l/t             #(C-c P5 C-c P5 C-f P5 o )  ;; lsp test
+  e/l/a             #(esc P5 spc P5 c P5 l P5 a P5 a )  ;; lsp code actions
+  e/l/c             #(C-c P5 C-c)  ;; lsp run
+
+  e/l/d             C-A-f17  ;; lsp show docs
+  e/l/u             C-A-f18  ;; lsp show docs
+)
+
+(defsrc
+  esc         f1     f2     f3     f4     f5      f6       f7     f8     f9     f10    f11     f12
+  grv         1      2      3      4      5       6        7      8      9      0      -       =      bspc
+  tab         q      w      e      r      t       y        u      i      o      p      [       ]      \
+  caps        a      s      d      f      g       h        j      k      l      ;      '       ret
+  lsft        z      x      c      v      b       n        m      ,      .      /      rsft    up
+  fn          lctl   lalt   lmet                  spc                    rmet   ralt   left    down   rght
+)
+
+(deflayer colemak
+  esc         f1     f2     f3     f4     f5      f6       f7     f8     f9     f10    f11     f12
+  grv         M-1    M-2    M-3    M-4    M-5     M-6      M-7    M-8    M-9    M-0    \_      +      \
+  tab         q      w      e      r      t       esc      y      u      i      o      p       -      =
+  @bspc/sft   @lctr  @lsfr  @lalt  @lsft  g       esc      h      @rsft  @rsfr  @ralt  @rctr   @return/apostrophe
+  @del/symbol z      x      c      v      b       esc      n      m      ,      .      @slash/number up
+  fn          f12    @e/f/e @e/t/t                @navi                  @xf/ra ssrq   left    down   rght
+
+)
+
+(deflayer qwerty
+  esc         f1     f2     f3     f4     f5      f6       f7     f8     f9     f10    f11     (layer-switch colemak)
+  grv         1      2      3      4      5       6        7      8      9      0      -       =      bspc
+  tab         q      w      e      r      t       y        u      i      o      p      [       ]      \
+  caps        a      s      d      f      g       h        j      k      l      ;      '       ret
+  lsft        z      x      c      v      b       n        m      ,      .      /      rsft    up
+  fn          lctl   lalt   lmet                  spc                    rmet   ralt   left    down   rght
+)
+
+;; arrow keys, home/end, escape, and bunch of keybindings designated to emacs
+(deflayer navigation
+  _           _      _      _      _      _       _        _      _      _      _      _       (layer-switch qwerty)
+  @e/w/k      @e/ws1 @e/ws2 @e/ws3 @e/ws4 @e/ws5  @e/ws6   @e/ws7 @e/ws8 @e/ws9 @e/ws0 @e/w/p  @e/w/n _
+  A-tab       @e/kil @e/win @e/f/s @e/lsp @e/git  _        _      @e/c/l @e/sod @e/sou @e/c/r  =      _
+  esc         _      _      _      _      _       _        home   left   down   up     rght    end
+  _           @e/muc @e/m-x @e/clk @paste @e/buf  _        @e/b/k @e/buf @e/b/n @e/b/p _       _
+  fn          f15    f16    f17                   _                      _      _      _       _      _
+)
+
+;; symbols
+(deflayer symbold
+  _           _      _      _      _      _       _        _      _      _      _      _       _
+  _           _      _      _      _      _       _        _      _      _      _      _       _      _
+  _           _      _      _      _      _       _        _      {      [      ]      }       +      =
+  grv         !      @      #      $      %       _        ^      &      *      \(     \)      "
+  _           _      _      _      _       _      _        _      _      <      >      ?       _
+  fn          _      _      _                     _                      _      _      _       _      _
+)
+
+;; numbers
+(deflayer numberd
+  _           _      _      _      _      _       _        _      _      _      _      _       _
+  _           _      _      _      _      _       _        _      _      _      _      _       _      _
+  _           _      _      _      _      _       _        _      _      _      _      _       +      +
+  _           1      2      3      4      5       _        6      7      8      9      0       =
+  _           _      _      _      _      _       _        _      _      _      _      _       _
+  fn          _      _      _                     _                      _      _      _       _      _
+)
+
+;; emacs lsp and code navigation layer
+(deflayer coded
+  _           _      _      _      _      _       _        _      _      _      _      _       _
+  _           _      _      _      _      _       _        _      _      _      _      _       _      _
+  _           _      _      _      _      _       _        _      _      _      _      _       +      +
+  _           @e/l/a @e/l/r 3      @e/l/t 5       _        6      7      8      9      0       =
+  _           _      _      @e/l/c _      _       _        _      _      _      _      _       _
+  fn          _      _      _                     _                      _      _      _       _      _
+)
