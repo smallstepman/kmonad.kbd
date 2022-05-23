@@ -15,7 +15,7 @@
 (defalias
   ;; layers
   navigation        (layer-toggle navigation)
-  symbol            (layer-toggle symbold)
+  ;; symbol            (layer-toggle symbold)
   number            (layer-toggle numberd)
   ;; code              (layer-toggle coded)
 
@@ -31,7 +31,8 @@
 
   ;; stuff
   navi              (tap-hold 140 spc  @navigation)
-  del/symbol        (tap-hold 140 del  @symbol)
+  del/symbol        del
+  ;; del/symbol        (tap-hold 140 del  @symbol)
   slash/number      (tap-hold 140 /    @number)
   ;; bspc/sft          (tap-hold 140 bspc @code)
   bspc/sft          bspc
@@ -146,22 +147,23 @@
   fn          @free4 @free6 @free7                _                      @free9 @free0 @ewidw  @ewidh @ewiiw
 )
 
-;; symbols
-(deflayer symbold
-  _           _      _      _      _      _       _        _      _      _      _      _       _
-  _           _      _      _      _      _       _        _      _      _      _      _       _      _
-  _           _      _      _      _      _       _        _      {      [      ]      }       +      =
-  grv         !      @      #      $      %       _        ^      &      *      \(     \)      "
-  _           _      _      _      _       _      _        _      _      <      >      ?       _
-  fn          _      _      _                     _                      _      _      _       _      _
-)
 
-;; numbers
+;; numbers and symbols
 (deflayer numberd
   _           _      _      _      _      _       _        _      _      _      _      _       _
   _           _      _      _      _      _       _        _      _      _      _      _       _      _
-  grv         !      @      #      $      %       _        ^      &      *      \(     \)      _      _
+  grv         !      @      #      $      %       _        ^      {      [      ]      }       _      _
   _           1      2      3      4      5       _        6      7      8      9      0       "
-  _           {     [       ]      }      _       _        _      _      <      >      _       _
+  grv         !      @      #      $      %       _        ^      &      *      \(     \)      _
   fn          _      _      _                     _                      _      _      _       _      _
 )
+
+;; ;; symbols
+;; (deflayer symbold
+;;   _           _      _      _      _      _       _        _      _      _      _      _       _
+;;   _           _      _      _      _      _       _        _      _      _      _      _       _      _
+;;   _           _      _      _      _      _       _        _      {      [      ]      }       +      =
+;;   grv         !      @      #      $      %       _        ^      &      *      \(     \)      "
+;;   _           _      _      _      _       _      _        _      _      <      >      ?       _
+;;   fn          _      _      _                     _                      _      _      _       _      _
+;; )
