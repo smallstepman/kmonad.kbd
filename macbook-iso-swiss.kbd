@@ -1,0 +1,173 @@
+(defcfg
+  input  (iokit-name "Apple Internal Keyboard / Trackpad")
+  output (kext)
+)
+;; free keys
+;; A:
+;; C:
+;; M:
+;; AC:
+;; AM:
+;; CM:
+;; ACM: 
+
+(defalias
+  ;; layers
+  navigation        (layer-toggle navigation)
+;;  symbol            (layer-toggle symbold)
+  number            (layer-toggle numberd)
+  ;; code              (layer-toggle coded)
+  gitlayer          (layer-toggle gitlayer)
+
+  ;; home row mod
+  lctr              (tap-hold 140 a lmet)
+  lsfr              (tap-hold 140 r lctl)
+  lalt              (tap-hold 140 s lalt)
+  lsft              (tap-hold 140 t lsft)
+  rctr              (tap-hold 140 o lmet)
+  ralt              (tap-hold 140 i lctl)
+  rsfr              (tap-hold 140 e lalt)
+  rsft              (tap-hold 140 n lsft)
+
+  ;; stuff
+  navi              (tap-hold 140 spc  @navigation)
+  del/symbol        (tap-hold 140 del  @number)
+  under/symbol        (tap-hold 140 \_  @number)
+  ds                @del/symbol
+  slash/number      (tap-hold 140 /    @number)
+  ;; bspc/sft          (tap-hold 140 bspc @code)
+  bspc/sft          bspc
+  return/apostrophe (tap-hold 140 ret ')
+  esc/b             (tap-hold 140 esc bspc)
+  ;; slash/sft      (tap-hold 140 / lsft)
+  ;; bspc/sft       (tap-hold 140 bspc lsft)
+
+  ;; emacs
+  e/m-x             A-x                                  ;; alt x
+  e/w/s             C-A-M-`                              ;; workspace picker
+  e/ws1             C-A-M-1                              ;; workspace 1
+  e/ws2             C-A-M-2                              ;; workspace 2
+  e/ws3             C-A-M-3                              ;; workspace 3
+  e/ws4             C-A-M-4                              ;; workspace 4
+  e/ws5             C-A-M-5                              ;; workspace 5
+  e/ws6             C-A-M-6                              ;; workspace 6
+  e/ws7             C-A-M-7                              ;; workspace 7
+  e/ws8             C-A-M-8                              ;; workspace 8
+  e/ws9             C-A-M-9                              ;; workspace 9
+  e/ws0             C-A-M-0                              ;; workspace 10
+  e/w/p             C-A-M--                              ;; workspace previous
+  e/w/n             C-A-M-=                              ;; workspace next
+  e/w/k             C-A-M-esc                            ;; workspace kill
+  e/f/e             C-A-M-f1                             ;; file tree explorer
+  e/t/t             C-A-M-f2                             ;; terminal toggle
+  ;;xf/ra             (tap-hold 140 / @number)      ;; avy go to timer
+  ;;xf/ra             (tap-hold 140 C-A-M-f3 @number)      ;; avy go to timer
+  e/l/m             C-A-M-f4                             ;; lsp imenu
+  e/g/m             (tap-hold 140 #(C-A-M-f5 P5 g P5 z) @gitlayer)                             ;; version control commit message
+  e/g/t             C-A-M-f6                             ;; version control timemachine
+  e/kil             C-A-M-q                              ;; kill window or workspace
+  e/win             C-A-M-w                              ;; switch window
+  e/f/s             C-A-M-f                              ;; file save
+  e/git             C-A-M-g                              ;; magit
+  e/l/s             A-M-f18
+  e/l/h             A-M-f19
+  e/muc             C-A-M-z                              ;; multiple cursors
+  e/clk             C-A-M-c                              ;; org clock
+  e/l/v             C-A-M-v                              ;; lsp extend selection
+  e/buf             C-A-M-b                              ;; list of buffers
+  e/b/k             C-A-M-k                              ;; buffer kill
+  e/b/m             C-A-M-m                              ;; buffer maximize
+  e/b/p             C-A-M-,                              ;; buffer previous
+  e/b/n             C-A-M-.                              ;; buffer next
+  ewiml             C-A-M-left                           ;; window move left
+  ewimr             C-A-M-right                          ;; window move right
+  ewimu             C-A-M-up                             ;; window move up
+  ewimd             C-A-M-down                           ;; window move down
+  ewidw             C-M-left                             ;; window decrease width
+  ewiiw             C-M-right                            ;; window increase width
+  ewiih             C-M-up                               ;; window decrease height
+  ewidh             C-M-down                             ;; window increase height
+
+  e/sod             C-A-M-f13                            ;; scroll other window down
+  e/sou             C-A-M-f14                            ;; scroll other window up
+  e/LaCh            C-A-M-f15                            ;; goto last change
+  ;; e/c/r             C-A-M-f2                             ;; goto last change reversed
+  ;; e/lsp             C-A-M-f14                            ;; lsp
+  ;; e/l/r             #(C-c P5 C-c P5 C-s P5 ret)          ;; lsp run
+  ;; e/l/t             #(C-c P5 C-c P5 C-f P5 o )           ;; lsp test
+  gitlog            #(C-A-M-f5 P5 g P5 z P5 l P5 l)           ;; lsp test
+  e/w/n/git            #(C-A-M-+ P5 C-A-M-f5 P5 F P5 u P5 g P5 z P5 l P5 l)           ;; lsp test
+  e/w/p/git            #(C-A-M-- P5 C-A-M-f5 P5 F P5 u P5 g P5 z P5 l P5 l)           ;; lsp test
+  ;; e/l/a             #(esc P5 spc P5 c P5 l P5 a P5 a )   ;; lsp code actions
+  ;; e/l/c             #(C-c P5 C-c)                        ;; lsp run
+  ;; e/l/d             C-A-M-f17                            ;; lsp show docs
+  ;; e/l/u             C-A-M-f18                            ;; lsp show docs
+
+  e/b/s             C-A-M-tab                            ;; burly bookmark frames
+  eLd|a             A-M-f7                               ;; lsp list errors
+  eLdef             A-M-f8                               ;; lsp go to definition
+  eLref             A-M-f9                               ;; lsp peek references
+  eLimp             A-M-f10                              ;; lsp peek implementations
+  eLdec             A-M-f11                              ;; lsp ui show doc
+  eLact             A-M-f12                              ;; lsp code actions
+
+  e/p/c             C-A-M-f20                            ;; cycle popup
+  e/p/t             C-A-M-f16                            ;; toggle popup
+  e/p/cv            A-M-f16                              ;; convert into/from popup from/into normal window
+
+  free2             C-A-M-f17
+  free3             C-A-M-f18
+  free4             C-A-M-f19
+  free6             A-M-f17
+  free9             A-M-f20
+  freeA             C-A-M-a
+  free7             C-A-M-r
+)
+(defsrc
+  esc         f1     f2     f3     f4     f5      f6       f7     f8     f9     f10    f11     f12
+  lsgt        1      2      3      4      5       6        7      8      9      0      -       =      bspc
+  tab         q      w      e      r      t       y        u      i      o      p      [       ]      ret
+  caps        a      s      d      f      g       h        j      k      l      ;      '       \
+  lsft  grv   z      x      c      v      b       n        m      ,      .      /      rsft    up
+  fn          lctl   lalt   lmet                  spc                    rmet   ralt   left    down   rght
+)
+
+(deflayer colemak
+  esc         brdn   brup   lp     _      bldn    blup     @free2   @free3     @free4   mute   vold    volu
+  grv         M-1    M-2    M-3    M-4    M-5     M-6      M-7    M-8    M-9    M-0    -      =      \
+  tab         q      w      f      p      g       @e/LaCh  _      j      l      u      y      ;       @return/apostrophe
+  @bspc/sft   @lctr  @lsfr  @lalt  @lsft  d       @e/sou   _      h      @rsft  @rsfr  @ralt  @rctr
+  @ds @ds     z      x      c      v      b       @e/sod   @slash/number      k      m      ,      .      @slash/number
+  fn          @e/l/m @e/f/e @e/t/t                @under/symbol                      @navi  @slash/number _ @ewiml  @ewimd
+
+)
+
+;; arrow keys, home/end, escape, and bunch of keybindings designated to emacs
+(deflayer navigation
+  _           _      _      _      _      _       _        _      _      _      _      _       _
+  @e/w/s      @e/ws1 @e/ws2 @e/ws3 @e/ws4 @e/ws5  @e/ws6   @e/ws7 @e/ws8 @e/ws9 @e/ws0 @e/w/p  @e/w/n @e/w/k
+  @e/b/s      @e/kil @e/win @e/f/s @freeA @e/git  @e/g/m   @eLd|a @eLdef @eLref @eLimp @eLdec  @eLact end
+  @esc/b      _      _      _      _      @free2  @e/g/t   _      home   left   down   up      rght
+  @e/p/cv  @e/p/cv   @e/muc @e/m-x @e/clk @e/l/v  @e/buf   @free3 _      @e/b/k @e/b/m @e/b/n  @e/b/p @e/l/s
+  fn          @free4 @free6 @free7                =                      @free9 @e/p/c @ewidw  @ewidh @ewiiw
+)
+
+;; numbers and symbols
+(deflayer numberd
+  _           _      _      _      _      _       _        _      _      _      _      _       _
+  _           _      _      _      _      _       _        _      _      _      _      _       _      _
+  grv         !      -      \_     =      +       _        _      -      {      [      ]       }      "
+  grv         !      @      #      $      %       _        _      ^      &      *      \(      \)
+  _           _      1      2      3      4       5        _      6      7      8      9       0      _
+  fn          _      _      _                     +                      _      _      _       _      _
+)
+
+
+(deflayer gitlayer
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ @e/w/p/git  @e/w/n/git _
+  _ _ _ _ _ _ _ @gitlog _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _
+)
