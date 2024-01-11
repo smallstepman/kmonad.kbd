@@ -125,7 +125,7 @@
 )
 (defsrc
   esc         f1     f2     f3     f4     f5      f6       f7     f8     f9     f10    f11     f12
-  lsgt        1      2      3      4      5       6        7      8      9      0      -       =      bspc
+  nubs        1      2      3      4      5       6        7      8      9      0      -       =      bspc
   tab         q      w      e      r      t       y        u      i      o      p      [       ]      ret
   caps        a      s      d      f      g       h        j      k      l      ;      '       \
   lsft  grv   z      x      c      v      b       n        m      ,      .      /      rsft    up
@@ -134,7 +134,7 @@
 
 (deflayer colemak
   esc         brdn   brup   lp     _      bldn    blup     @free2   @free3     @free4   mute   vold    volu
-  grv         M-1    M-2    M-3    M-4    M-5     M-6      M-7    M-8    M-9    M-0    -      =      \
+  nubs         M-1    M-2    M-3    M-4    M-5     M-6      M-7    M-8    M-9    M-0    -      =      \
   tab         q      w      f      p      g       @e/LaCh  _      j      l      u      y      ;       @return/apostrophe
   @bspc/sft   @lctr  @lsfr  @lalt  @lsft  d       @e/sou   _      h      @rsft  @rsfr  @ralt  @rctr
   @ds @ds     z      x      c      v      b       @e/sod   @slash/number      k      m      ,      .      @slash/number
@@ -156,8 +156,8 @@
 (deflayer numberd
   _           _      _      _      _      _       _        _      _      _      _      _       _
   _           _      _      _      _      _       _        _      _      _      _      _       _      _
-  grv         !      -      \_     =      +       _        _      -      {      [      ]       }      "
-  grv         !      @      #      $      %       _        _      ^      &      *      \(      \)
+  S-nubs      !      -      \_     =      +       _        _      -      {      [      ]       }      "
+  nubs        !      @      #      $      %       _        _      ^      &      *      \(      \)
   _           _      1      2      3      4       5        _      6      7      8      9       0      _
   fn          _      _      _                     +                      _      _      _       _      _
 )
