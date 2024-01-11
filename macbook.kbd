@@ -15,24 +15,25 @@
 (defalias
   ;; layers
   navigation        (layer-toggle navigation)
-  ;; symbol            (layer-toggle symbold)
+  symbol            (layer-toggle numberd)
   number            (layer-toggle numberd)
+  gitlayer          (layer-toggle gitlayer)
   ;; code              (layer-toggle coded)
 
   ;; home row mod
   lctr              (tap-hold 140 a lmet)
-  lsfr              (tap-hold 140 s lctl)
-  lalt              (tap-hold 140 d lalt)
-  lsft              (tap-hold 140 f lsft)
-  rctr              (tap-hold 140 ; lmet)
-  ralt              (tap-hold 140 l lctl)
-  rsfr              (tap-hold 140 k lalt)
-  rsft              (tap-hold 140 j lsft)
+  lsfr              (tap-hold 140 r lctl)
+  lalt              (tap-hold 140 s lalt)
+  lsft              (tap-hold 140 t lsft)
+  rctr              (tap-hold 140 o lmet)
+  ralt              (tap-hold 140 i lctl)
+  rsfr              (tap-hold 140 e lalt)
+  rsft              (tap-hold 140 n lsft)
 
   ;; stuff
   navi              (tap-hold 140 spc  @navigation)
-  del/symbol        del
-  ;; del/symbol        (tap-hold 140 del  @symbol)
+  ;; del/symbol        del
+  del/symbol        (tap-hold 140 del  @symbol)
   slash/number      (tap-hold 140 /    @number)
   ;; bspc/sft          (tap-hold 140 bspc @code)
   bspc/sft          bspc
@@ -61,15 +62,17 @@
   e/t/t             C-A-M-f2                             ;; terminal toggle
   xf/ra             (tap-hold 140 C-A-M-f3 @number)      ;; avy go to timer
   e/l/m             C-A-M-f4                             ;; lsp imenu
-  e/g/m             C-A-M-f5                             ;; version control commit message
+  e/g/m             (tap-hold 140 #(C-A-M-f5 P5 g P5 z) @gitlayer)                             ;; version control commit message
   e/g/t             C-A-M-f6                             ;; version control timemachine
   e/kil             C-A-M-q                              ;; kill window or workspace
   e/win             C-A-M-w                              ;; switch window
   e/f/s             C-A-M-f                              ;; file save
   e/git             C-A-M-g                              ;; magit
+  e/l/s             A-M-f18
+  e/l/h             A-M-f19
   e/muc             C-A-M-z                              ;; multiple cursors
   e/clk             C-A-M-c                              ;; org clock
-  e/l/s             C-A-M-v                              ;; lsp extend selection
+  e/l/v             C-A-M-v                              ;; lsp extend selection
   e/buf             C-A-M-b                              ;; list of buffers
   e/b/k             C-A-M-k                              ;; buffer kill
   e/b/m             C-A-M-m                              ;; buffer maximize
@@ -91,6 +94,9 @@
   ;; e/lsp             C-A-M-f14                            ;; lsp
   ;; e/l/r             #(C-c P5 C-c P5 C-s P5 ret)          ;; lsp run
   ;; e/l/t             #(C-c P5 C-c P5 C-f P5 o )           ;; lsp test
+  gitlog            #(C-A-M-f5 P5 g P5 z P5 l P5 l)           ;; lsp test
+  e/w/n/git            #(C-A-M-+ P5 C-A-M-f5 P5 F P5 u P5 g P5 z P5 l P5 l)           ;; lsp test
+  e/w/p/git            #(C-A-M-- P5 C-A-M-f5 P5 F P5 u P5 g P5 z P5 l P5 l)           ;; lsp test
   ;; e/l/a             #(esc P5 spc P5 c P5 l P5 a P5 a )   ;; lsp code actions
   ;; e/l/c             #(C-c P5 C-c)                        ;; lsp run
   ;; e/l/d             C-A-M-f17                            ;; lsp show docs
@@ -104,17 +110,17 @@
   eLdec             A-M-f11                              ;; lsp ui show doc
   eLact             A-M-f12                              ;; lsp code actions
 
-  free0             C-A-M-f20
-  free1             C-A-M-f16
+  e/p/c             C-A-M-f20                            ;; cycle popup
+  e/p/t             C-A-M-f16                            ;; toggle popup
+  e/p/cv            A-M-f16                              ;; convert into/from popup from/into normal window
+
   free2             C-A-M-f17
   free3             C-A-M-f18
   free4             C-A-M-f19
-  free5             A-M-f16
   free6             A-M-f17
-  free7             A-M-f18
-  free8             A-M-f19
   free9             A-M-f20
   freeA             C-A-M-a
+  free7             C-A-M-r
 )
 
 (defsrc
@@ -127,24 +133,24 @@
 )
 
 (deflayer colemak
-  esc         brdn   brup   lp     _      bldn    blup     prev   pp     next   mute   vold    volu
+  esc         brdn   brup   lp     _      bldn    blup     @free2   @free3     @free4   mute   vold    volu
   grv         M-1    M-2    M-3    M-4    M-5     M-6      M-7    M-8    M-9    M-0    \_      +      \
-  tab         q      w      e      r      t       @e/LaCh  y      u      i      o      p       -      =
-  @bspc/sft   @lctr  @lsfr  @lalt  @lsft  g       @e/sou   h      @rsft  @rsfr  @ralt  @rctr   @return/apostrophe
-  @del/symbol z      x      c      v      b       @e/sod   n      m      ,      .      @slash/number @ewimu
-  fn          @e/l/m @e/f/e @e/t/t                @navi                  @xf/ra @free1 @ewiml  @ewimd  @ewimr
+  tab         q      w      f      p      g       @e/LaCh  j      l      u      y      ;       -      =
+  @bspc/sft   @lctr  @lsfr  @lalt  @lsft  d       @e/sou   h      @rsft  @rsfr  @ralt  @rctr   @return/apostrophe
+  @del/symbol z      x      c      v      b       @e/sod   k      m      ,      .      @slash/number @ewimu
+  fn          @e/l/m @e/f/e @e/t/t                @navi                  @xf/ra @e/p/t @ewiml  @ewimd  @ewimr
 
 )
 
-
 ;; arrow keys, home/end, escape, and bunch of keybindings designated to emacs
 (deflayer navigation
+
   _           _      _      _      _      _       _        _      _      _      _      _       _
   @e/w/s      @e/ws1 @e/ws2 @e/ws3 @e/ws4 @e/ws5  @e/ws6   @e/ws7 @e/ws8 @e/ws9 @e/ws0 @e/w/p  @e/w/n @e/w/k
-  @e/b/s      @e/kil @e/win @e/f/s @freeA @e/git  @e/g/m   @eLd|a @eLdef @eLref @eLimp @eLdec  =      @free8
+  @e/b/s      @e/kil @e/win @e/f/s @freeA @e/git  @e/g/m   @eLd|a @eLdef @eLref @eLimp @eLdec  @eLact @e/l/h
   @esc/b      _      _      _      _      @free2  @e/g/t   home   left   down   up     rght    end
-  @free5      @e/muc @e/m-x @e/clk @e/l/s @e/buf  @free3   @e/b/k @e/b/m @e/b/n @e/b/p @eLact  @ewiih
-  fn          @free4 @free6 @free7                _                      @free9 @free0 @ewidw  @ewidh @ewiiw
+  @e/p/cv     @e/muc @e/m-x @e/clk @e/l/v @e/buf  @free3   @e/b/k @e/b/m @e/b/n @e/b/p @e/l/s  @ewiih
+  fn          @free4 @free6 @free7                _                      @free9 @e/p/c @ewidw  @ewidh @ewiiw
 )
 
 
@@ -153,9 +159,18 @@
   _           _      _      _      _      _       _        _      _      _      _      _       _
   _           _      _      _      _      _       _        _      _      _      _      _       _      _
   grv         !      @      #      $      %       _        ^      {      [      ]      }       _      _
-  _           1      2      3      4      5       _        6      7      8      9      0       "
-  grv         !      @      #      $      %       _        ^      &      *      \(     \)      _
+  grv         !      @      #      $      %       _        ^      &      *      \(     \)      "
+  _           1      2      3      4      5       _        6      7      8      9      0       _
   fn          _      _      _                     _                      _      _      _       _      _
+)
+
+(deflayer gitlayer
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ @e/w/p/git  @e/w/n/git _
+  _ _ _ _ _ _ _ @gitlog _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _
 )
 
 ;; ;; symbols
