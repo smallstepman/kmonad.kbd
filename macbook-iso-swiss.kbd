@@ -29,18 +29,24 @@
   rsfr              (tap-hold 140 e lalt)
   rsft              (tap-hold 140 n lsft)
 
+  gptel-menu         C-M-tab
+  gptel-send         C-tab
+
   ;; stuff
   navi              (tap-hold 140 spc  @navigation)
+  ai                (tap-hold 140 @gptel-send  @gptel-menu)
   del/symbol        (tap-hold 140 del  @number)
   under/symbol        (tap-hold 140 \_  @number)
   ds                @del/symbol
   slash/number      (tap-hold 140 /    @number)
+  dot/number      (tap-hold 130 .    @number)
   ;; bspc/sft          (tap-hold 140 bspc @code)
   bspc/sft          bspc
   return/apostrophe (tap-hold 140 ret ')
   esc/b             (tap-hold 140 esc bspc)
   ;; slash/sft      (tap-hold 140 / lsft)
   ;; bspc/sft       (tap-hold 140 bspc lsft)
+  gpt               C-M-f4
 
   ;; emacs
   e/m-x             A-x                                  ;; alt x
@@ -62,7 +68,7 @@
   e/t/t             C-A-M-f2                             ;; terminal toggle
   ;;xf/ra             (tap-hold 140 / @number)      ;; avy go to timer
   ;;xf/ra             (tap-hold 140 C-A-M-f3 @number)      ;; avy go to timer
-  e/l/m             C-A-M-f4                             ;; lsp imenu
+  ;;e/l/m             C-A-M-f4                             ;; lsp imenu
   e/g/m             (tap-hold 140 #(C-A-M-f5 P5 g P5 z) @gitlayer)                             ;; version control commit message
   e/g/t             C-A-M-f6                             ;; version control timemachine
   e/kil             C-A-M-q                              ;; kill window or workspace
@@ -133,12 +139,12 @@
 )
 
 (deflayer colemak
-  esc         brdn   brup   lp     _      bldn    blup     @free2   @free3     @free4   mute   vold    volu
-  nubs         M-1    M-2    M-3    M-4    M-5     M-6      M-7    M-8    M-9    M-0    -      =      \
+  esc         brdn   brup   mctl   @gpt   dict    zzz      prev   pp     next   mute   vold    volu
+  nubs        M-1    M-2    M-3    M-4    M-5     M-6      M-7    M-8    M-9    M-0    -      =      \
   tab         q      w      f      p      g       @e/LaCh  _      j      l      u      y      ;       @return/apostrophe
   @bspc/sft   @lctr  @lsfr  @lalt  @lsft  d       @e/sou   _      h      @rsft  @rsfr  @ralt  @rctr
-  @ds @ds     z      x      c      v      b       @e/sod   @slash/number      k      m      ,      .      @slash/number
-  fn          @e/l/m @e/f/e @e/t/t                @under/symbol                      @navi  @slash/number _ @ewiml  @ewimd
+  @ds @ds     z      x      c      v      b       @e/sod   @slash/number      k      m      ,      @dot/number      @slash/number
+  fn          _ @e/f/e @e/t/t                @under/symbol                      @navi  @slash/number _ @ewiml  @ewimd
 
 )
 
@@ -149,7 +155,7 @@
   @e/b/s      @e/kil @e/win @e/f/s @freeA @e/git  @e/g/m   @eLd|a @eLdef @eLref @eLimp @eLdec  @eLact end
   @esc/b      _      _      _      _      @free2  @e/g/t   _      home   left   down   up      rght
   @e/p/cv  @e/p/cv   @e/muc @e/m-x @e/clk @e/l/v  @e/buf   @free3 _      @e/b/k @e/b/m @e/b/n  @e/b/p @e/l/s
-  fn          @free4 @free6 @free7                =                      @free9 @e/p/c @ewidw  @ewidh @ewiiw
+  fn          @free4 @free6 @free7                -                      @free9 @e/p/c @ewidw  @ewidh @ewiiw
 )
 
 ;; numbers and symbols
@@ -159,7 +165,7 @@
   S-nubs      !      -      \_     =      +       _        _      -      {      [      ]       }      "
   nubs        !      @      #      $      %       _        _      ^      &      *      \(      \)
   _           _      1      2      3      4       5        _      6      7      8      9       0      _
-  fn          _      _      _                     +                      _      _      _       _      _
+  fn          _      _      _                     =                      @ai    _      _       _      _
 )
 
 
