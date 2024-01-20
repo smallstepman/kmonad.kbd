@@ -14,20 +14,18 @@
 (defalias
   ;; layers
   navigation        (layer-toggle navigation)
-;;  symbol            (layer-toggle symbold)
   number            (layer-toggle numberd)
-  ;; code              (layer-toggle coded)
   gitlayer          (layer-toggle gitlayer)
 
   ;; home row mod
-  lctr              (tap-hold 140 a lmet)
-  lsfr              (tap-hold 140 r lctl)
+  lmet              (tap-hold 140 a lmet)
+  lctl              (tap-hold 140 r lctl)
   lalt              (tap-hold 140 s lalt)
   lsft              (tap-hold 140 t lsft)
-  rctr              (tap-hold 140 o lmet)
-  ralt              (tap-hold 140 i lctl)
-  rsfr              (tap-hold 140 e lalt)
   rsft              (tap-hold 140 n lsft)
+  ralt              (tap-hold 140 e lalt)
+  rctl              (tap-hold 140 i lctl)
+  rmet              (tap-hold 140 o lmet)
 
 
   ;; stuff
@@ -132,9 +130,9 @@
   esc         brdn   brup   mctl   @gpt   dict    zzz      prev   pp     next   mute   vold    volu
   nubs        M-1    M-2    M-3    M-4    M-5     M-6      M-7    M-8    M-9    M-0    -       =      \
   tab         q      w      f      p      g       @e/LaCh  _      j      l      u      y       ;       @return/apostrophe
-  bspc        @lctr  @lsfr  @lalt  @lsft  d       @e/sou   _      h      @rsft  @rsfr  @ralt   @rctr
-  @ds @ds     z      x      c      v      b       @e/sod   @slash/number k m    ,      @dot/number          _
-  fn          _      @e/f/e @e/t/t                @under/symbol                      @navi  @slash/number _ _ _
+  bspc        @lmet  @lctl  @lalt  @lsft  d       @e/sou   _      h      @rsft  @ralt  @rctl   @rmet
+  @ds @ds     z      x      c      v      b       @e/sod   @slash/number k m    ,      @slash/number          _
+  fn          _      @e/f/e @e/t/t                @under/symbol                      @navi  @dot/number _ _ _
 
 )
 
@@ -150,7 +148,7 @@
 (deflayer numberd
   _           _      _      _      _      _       _        _      _      _      _      _       _
   _           _      _      _      _      _       _        _      _      _      _      _       _      _
-  S-nubs      !      -      \_     =      +       _        _      -      {      [      ]       }      "
+  S-nubs      _      -      =      +      _       _        _      _      {      [      ]       }      "
   nubs        !      @      #      $      %       _        _      ^      &      *      \(      \)
   _           _      1      2      3      4       5        _      6      7      8      9       0      _
   fn          _      _      _                     =                      @ai    _      _       _      _
