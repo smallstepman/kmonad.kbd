@@ -2,164 +2,138 @@
   input  (iokit-name "Apple Internal Keyboard / Trackpad")
   output (kext)
 )
-;; free keys
-;; A:
-;; C:
-;; M:
-;; AC:
-;; AM:
-;; CM:
-;; ACM: 
 
 (defalias
-  ;; layers
-  navigation        (layer-toggle navigation)
-  number            (layer-toggle numberd)
-  gitlayer          (layer-toggle gitlayer)
+  navi                     (layer-toggle navigation)
+  number                   (layer-toggle numberd)
 
-  ;; home row mod
-  lmet              (tap-hold 140 a lmet)
-  lctl              (tap-hold 140 r lctl)
-  lalt              (tap-hold 140 s lalt)
-  lsft              (tap-hold 140 t lsft)
-  rsft              (tap-hold 140 n lsft)
-  ralt              (tap-hold 140 e lalt)
-  rctl              (tap-hold 140 i lctl)
-  rmet              (tap-hold 140 o lmet)
+  nav                      (tap-hold 140 spc @navi)
+  del/num                  (tap-hold 140 del @number)
+  under/num                (tap-hold 140 \_  @number)
+  slash/num                (tap-hold 140 /   @number)
+  dot/num                  (tap-hold 140 .   @number)
+  lcmd                     (tap-hold 140 a   lmet)
+  lctl                     (tap-hold 140 r   lctl)
+  lalt                     (tap-hold 140 s   lalt)
+  lsft                     (tap-hold 140 t   lsft)
+  rsft                     (tap-hold 140 n   lsft)
+  ralt                     (tap-hold 140 e   lalt)
+  rctl                     (tap-hold 140 i   lctl)
+  rcmd                     (tap-hold 140 o   lmet)
 
-
-  ;; stuff
-  gptel-menu        C-M-tab
-  gptel-send        C-tab
-  navi              (tap-hold 140 spc  @navigation)
-  ai                (tap-hold 140 @gptel-send  @gptel-menu)
-  del/symbol        (tap-hold 140 del  @number)
-  under/symbol        (tap-hold 140 \_  @number)
-  ds                @del/symbol
-  slash/number      (tap-hold 140 /    @number)
-  dot/number      (tap-hold 130 .    @number)
-  return/apostrophe (tap-hold 140 ret ')
-  esc/b             (tap-hold 140 esc bspc)
+  vterm                    C-A-M-S-v
+  osgpt                    C-A-M-S-s
+  term-mic                 (multi-tap 190 @vterm 190 dict @osgpt)
+  ret/apos                 (tap-hold 140 ret ')
+  esc/bspc                 (tap-hold 140 esc bspc)
+  ds                       @del/num
+  sn                       @slash/num
 
   ;; os
-  gpt               C-M-f4
-  wm/ws1            C-A-M-1                              ;; workspace 1
-  wm/ws2            C-A-M-2                              ;; workspace 2
-  wm/ws3            C-A-M-3                              ;; workspace 3
-  wm/ws4            C-A-M-4                              ;; workspace 4
-  wm/ws5            C-A-M-5                              ;; workspace 5
-  wm/ws6            C-A-M-6                              ;; workspace 6
-  wm/ws7            C-A-M-7                              ;; workspace 7
-  wm/ws8            C-A-M-8                              ;; workspace 8
-  wm/ws9            C-A-M-9                              ;; workspace 9
-  wm/ws0            C-A-M-0                              ;; workspace 10
+  wsf1                     C-1
+  wsf2                     C-2
+  wsf3                     C-3
+  wsf4                     C-4
+  wsf5                     C-5
+  wsf6                     C-6
+  wsf7                     C-7
+  wsfnext                  C-8
+  wsfprev                  C-9
+  wsf_b_and_f              C-0
+  ewsf1                    C-A-1
+  ewsf2                    C-A-2
+  ewsf3                    C-A-3
+  ewsf4                    C-A-4
+  ewsf5                    C-A-5
+  ewsf6                    C-A-6
+  ewsf7                    C-A-7
+  ewsprev                  C-A-8
+  ewsnext                  C-A-9
+  ewskill                  C-A-0
 
   ;; emacs
+  wkill                    C-M-q
+  fn-up                    C-M-w
+  class-up                 C-M-S-w
+  lsp-up                   (multi-tap 190 @fn-up @class-up)
+  filesave                 C-M-f
+  snipe-search             C-M-S-f
+  snipe-or-save            (multi-tap 190 @snipe-search @filesave)
+  pg-up-ow                 C-M-p
+  magit                    C-M-g
 
-  e/m-x             A-x                                  ;; alt x
-  e/w/p             C-A-M--                              ;; workspace previous
-  e/w/n             C-A-M-=                              ;; workspace next
-  e/w/k             C-A-M-esc                            ;; workspace kill
-  e/f/e             C-A-M-f1                             ;; file tree explorer
-  e/t/t             C-A-M-f2                             ;; terminal toggle
-  ;;xf/ra             (tap-hold 140 / @number)      ;; avy go to timer
-  ;;xf/ra             (tap-hold 140 C-A-M-f3 @number)      ;; avy go to timer
-  ;;e/l/m             C-A-M-f4                             ;; lsp imenu
-  e/g/m             (tap-hold 140 #(C-A-M-f5 P5 g P5 z) @gitlayer)                             ;; version control commit message
-  e/g/t             C-A-M-f6                             ;; version control timemachine
-  e/kil             C-A-M-q                              ;; kill window or workspace
-  e/win             C-A-M-w                              ;; switch window
-  e/f/s             C-A-M-f                              ;; file save
-  e/git             C-A-M-g                              ;; magit
-  e/l/s             A-M-f18
-  e/l/h             A-M-f19
-  e/muc             C-A-M-z                              ;; multiple cursors
-  e/clk             C-A-M-c                              ;; org clock
-  e/l/v             C-A-M-v                              ;; lsp extend selection
-  e/buf             C-A-M-b                              ;; list of buffers
-  e/b/k             C-A-M-k                              ;; buffer kill
-  e/b/m             C-A-M-m                              ;; buffer maximize
-  e/b/p             C-A-M-,                              ;; buffer previous
-  e/b/n             C-A-M-.                              ;; buffer next
-  ewiml             C-A-M-left                           ;; window move left
-  ewimr             C-A-M-right                          ;; window move right
-  ewimu             C-A-M-up                             ;; window move up
-  ewimd             C-A-M-down                           ;; window move down
-  ewidw             C-M-left                             ;; window decrease width
-  ewiiw             C-M-right                            ;; window increase width
-  ewiih             C-M-up                               ;; window decrease height
-  ewidh             C-M-down                             ;; window increase height
+  lsp-diagnostic-popup     C-M-j
+  lsp-code-actions         C-M-S-j
+  lsp-show-definition      C-M-l
+  lsp-goto-parent-module   C-M-S-l
+  lsp-show-reference       C-M-u
+  lsp-rust-related-tests   C-M-S-u
+  lsp-imenu-multi          C-M-y
+  lsp-ui-imenu             C-M-S-y
+  lsp-open-in-other-window C-M-;
+  lsp-rust-external-doc    C-M-S-;
+  lsp-err                  (multi-tap 300 @lsp-diagnostic-popup     @lsp-code-actions)
+  lsp-def                  (multi-tap 300 @lsp-show-definition      @lsp-goto-parent-module)
+  lsp-ref                  (multi-tap 300 @lsp-show-reference       @lsp-rust-related-tests)
+  lsp-sym                  (multi-tap 300 @lsp-imenu-multi          @lsp-ui-imenu)
+  lsp-open                 (multi-tap 300 @lsp-open-in-other-window @lsp-rust-external-doc)
 
-  e/sod             C-A-M-f13                            ;; scroll other window down
-  e/sou             C-A-M-f14                            ;; scroll other window up
-  e/LaCh            C-A-M-f15                            ;; goto last change
-  ;; e/c/r             C-A-M-f2                             ;; goto last change reversed
-  ;; e/lsp             C-A-M-f14                            ;; lsp
-  ;; e/l/r             #(C-c P5 C-c P5 C-s P5 ret)          ;; lsp run
-  ;; e/l/t             #(C-c P5 C-c P5 C-f P5 o )           ;; lsp test
-  gitlog            #(C-A-M-f5 P5 g P5 z P5 l P5 l)           ;; lsp test
-  e/w/n/git            #(C-A-M-+ P5 C-A-M-f5 P5 F P5 u P5 g P5 z P5 l P5 l)           ;; lsp test
-  e/w/p/git            #(C-A-M-- P5 C-A-M-f5 P5 F P5 u P5 g P5 z P5 l P5 l)           ;; lsp test
-  ;; e/l/a             #(esc P5 spc P5 c P5 l P5 a P5 a )   ;; lsp code actions
-  ;; e/l/c             #(C-c P5 C-c)                        ;; lsp run
-  ;; e/l/d             C-A-M-f17                            ;; lsp show docs
-  ;; e/l/u             C-A-M-f18                            ;; lsp show docs
+  fn-dn                    C-M-r
+  class-dn                 C-M-S-r
+  lsp-dn                   (multi-tap 190 @fn-dn @class-dn)
+  orgai                    (tap-macro C-M-C C-M-A :delay 5)
+  gptel-menu               C-M-S-s
+  gptel-send               C-M-s
+  gptel                    (tap-hold-next-release 190 @gptel-send @gptel-menu)
+  gpt                      (multi-tap 190 @gptel @orgai)
+  pg-dn-ow                 C-M-t
+  mcursor                  C-M-d
 
-  e/b/s             C-A-M-tab                            ;; burly bookmark frames
-  eLd|a             A-M-f7                               ;; lsp list errors
-  eLdef             A-M-f8                               ;; lsp go to definition
-  eLref             A-M-f9                               ;; lsp peek references
-  eLimp             A-M-f10                              ;; lsp peek implementations
-  eLdec             A-M-f11                              ;; lsp ui show doc
-  eLact             A-M-f12                              ;; lsp code actions
+  zap                      M-z
+  clock-in                 C-M-c
+  lsp-ext-v                C-M-v
+  ranger                   C-M-b
 
-  e/p/c             C-A-M-f20                            ;; cycle popup
-  e/p/t             C-A-M-f16                            ;; toggle popup
-  e/p/cv            A-M-f16                              ;; convert into/from popup from/into normal window
+  bkill                    C-M-k
+  bmax                     C-M-m
+  bnext                    C-M-,
+  bprev                    C-M-/
+
+  powerthesaurus           C-M-\_
 )
+
 (defsrc
-  esc         f1     f2     f3     f4     f5      f6       f7     f8     f9     f10    f11     f12
-  nubs        1      2      3      4      5       6        7      8      9      0      -       =      bspc
-  tab         q      w      e      r      t       y        u      i      o      p      [       ]      ret
-  caps        a      s      d      f      g       h        j      k      l      ;      '       \
-  lsft  grv   z      x      c      v      b       n        m      ,      .      /      rsft    up
-  fn          lctl   lalt   lmet                  spc                    rmet   ralt   left    down   rght
+  esc               f1       f2       f3              f4        f5         f6        f7       f8       f9       f10      f11       f12
+  nubs              1        2        3               4         5          6         7        8        9        0        -         =         bspc
+  tab               q        w        e               r         t          y         u        i        o        p        [         ]         ret
+  caps              a        s        d               f         g          h         j        k        l        ;        '         \
+  lsft     grv      z        x        c               v         b          n         m        ,        .        /        rsft      up
+  fn                lctl     lalt     lmet                                 spc                         rmet     ralt     left      down      rght
 )
-
 (deflayer colemak
-  esc         brdn   brup   mctl   @gpt   dict    zzz      prev   pp     next   mute   vold    volu
-  nubs        M-1    M-2    M-3    M-4    M-5     M-6      M-7    M-8    M-9    M-0    -       =      \
-  tab         q      w      f      p      g       @e/LaCh  _      j      l      u      y       ;       @return/apostrophe
-  bspc        @lmet  @lctl  @lalt  @lsft  d       @e/sou   _      h      @rsft  @ralt  @rctl   @rmet
-  @ds @ds     z      x      c      v      b       @e/sod   @slash/number k m    ,      @slash/number          _
-  fn          _      @e/f/e @e/t/t                @under/symbol                      @navi  @dot/number _ _ _
-
-)
-
-(deflayer navigation
-  _           _       _       _       _       _       _        _       _       _       _       _       _
-  _           @wm/ws1 @wm/ws2 @wm/ws3 @wm/ws4 @wm/ws5 @wm/ws6  @wm/ws7 @wm/ws8 @wm/ws9 @wm/ws0 @e/w/p  @e/w/n @e/w/k
-  @e/b/s      @e/kil  @e/win  @e/f/s  _       @e/git  @e/g/m   @eLd|a  @eLdef  @eLref  @eLimp  @eLdec  @eLact end
-  @esc/b      _       _       _       _       _       @e/g/t   _       home    left    down    up      rght
-  @e/p/cv @e/p/cv @e/muc @e/m-x @e/clk @e/l/v @e/buf  _        _       @e/b/k  @e/b/m  @e/b/n  @e/b/p  @e/l/s
-  fn          _       _       _                       -                        _       @e/p/c  @ewidw  @ewidh @ewiiw
+  esc               brdn     brup     mctl            @gpt      dict       zzz       prev     pp       next     mute     vold      volu
+  nubs              @wsf1    @wsf2    @wsf3           @wsf4     @wsf5      @wsf6     @wsf7    _        _        _        @wsfprev  @wsfnext  \
+  tab               q        w        f               p         g          _         _        j        l        u        y         ;         @ret/apos
+  bspc              @lcmd    @lctl    @lalt           @lsft     d          _         _        h        @rsft    @ralt    @rctl     @rcmd
+  @ds      @ds      z        x        c               v         b          _         @sn      k        m        ,        @sn       _
+  fn                _        _        @term-mic                            @under/num                  @nav     @dot/num _         _         _
 )
 
 (deflayer numberd
-  _           _      _      _      _      _       _        _      _      _      _      _       _
-  _           _      _      _      _      _       _        _      _      _      _      _       _      _
-  S-nubs      _      -      =      +      _       _        _      _      {      [      ]       }      "
-  nubs        !      @      #      $      %       _        _      ^      &      *      \(      \)
-  _           _      1      2      3      4       5        _      6      7      8      9       0      _
-  fn          _      _      _                     =                      @ai    _      _       _      _
+  _                 _        _        _               _         _          _         _        _        _        _        _         _
+  _                 _        _        _               _         _          _         _        _        _        _        _         _         .
+  S-nubs            nubs     -        =               +         _          _         _        _        {        [        ]         }         "
+  _                 !        @        #               $         %          _         _        ^        &        *        \(        \)
+  _        _        1        2        3               4         5          _         6        7        8        9        0         _
+  fn                _        _        _                                    =                           _        _        _         _         _
 )
 
-
-(deflayer gitlayer
-  _ _ _ _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _ _ _ _ _ _ @e/w/p/git  @e/w/n/git _
-  _ _ _ _ _ _ _ @gitlog _ _ _ _ _ _
-  _ _ _ _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _ _ _ _ _
+(deflayer navigation
+  _                 _        _        _               _          _         _         _        _        _        _        _         _
+  _                 @ewsf1   @ewsf2   @ewsf3          @ewsf4     @ewsf5    @ewsf6    @ewsf7   _        _        _        @ewsprev  @ewsnext  @ewskill
+  _                 @wkill   @lsp-up  @snipe-or-save  @pg-up-ow  @magit    _         _        @lsp-err @lsp-def @lsp-ref @lsp-sym  @lsp-open end
+  @esc/bspc         _        @lsp-dn  @gpt            @pg-dn-ow  @mcursor  _         _        home     left     down     up        rght
+  @del/num @del/num @zap     A-x      @clock-in       @lsp-ext-v @ranger   _         _        @bkill   @bmax    @bprev   @bnext    _
+  fn                _        _        @powerthesaurus                      -                           _        _        _         _         _
 )
+
