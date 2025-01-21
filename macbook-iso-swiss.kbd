@@ -1,6 +1,7 @@
 (defcfg
   input  (iokit-name "Apple Internal Keyboard / Trackpad")
   output (kext)
+  allow-cmd true
 )
 
 (defalias
@@ -12,16 +13,61 @@
   under/num                (tap-hold 140 \_  @number)
   slash/num                (tap-hold 140 /   @number)
   dot/num                  (tap-hold 140 .   @number)
-  lcmd                     (tap-hold 140 a   lmet)
-  lctl                     (tap-hold 140 r   lctl)
-  lalt                     (tap-hold 140 s   lalt)
-  lsft                     (tap-hold 140 t   lsft)
-  rsft                     (tap-hold 140 n   lsft)
-  ralt                     (tap-hold 140 e   lalt)
-  rctl                     (tap-hold 140 i   lctl)
-  rcmd                     (tap-hold 140 o   lmet)
+  lcmd                     (tap-hold-next-release 140 a   lmet)
+  lctl                     (tap-hold-next-release 140 r   lctl)
+  lalt                     (tap-hold-next-release 140 s   lalt)
+  lsft                     (tap-hold-next-release 140 t   lsft)
+  rsft                     (tap-hold-next-release 140 n   lsft)
+  ralt                     (tap-hold-next-release 140 e   lalt)
+  rctl                     (tap-hold-next-release 140 i   lctl)
+  rcmd                     (tap-hold-next-release 140 o   lmet)
 
-  vterm                    C-A-M-S-v
+  cal                      (cmd-button "/Users/m/.config/focus.sh Calendar")  
+  rem                      (cmd-button "/Users/m/.config/focus.sh Reminders")  
+  obs                      (cmd-button "/Users/m/.config/focus.sh Obsidian")  
+  note                     (cmd-button "/Users/m/.config/focus.sh Notes")  
+  finder                   (cmd-button "/Users/m/.config/focus.sh Finder")  
+
+  safari                   (cmd-button "/Users/m/.config/focus.sh Safari")  
+  mail                     (cmd-button "/Users/m/.config/focus.sh Mail")  
+
+  proxmox                  (cmd-button "/Users/m/.config/focus.sh Proxmox")  
+  dify                     (cmd-button "/Users/m/.config/focus.sh Dify")  
+  dagster                  (cmd-button "/Users/m/.config/focus.sh Dagster")  
+  emacs                    (cmd-button "/Users/m/.config/focus.sh Emacs")  
+  terminal                 (cmd-button "/Users/m/.config/focus.sh Terminal")  
+  vscode                   (cmd-button "/Users/m/.config/focus.sh VSCode")  
+
+  llmapp                   (cmd-button "/Users/m/.config/focus.sh LLMApp")  
+  llmterminal              (cmd-button "/Users/m/.config/focus.sh LLMTerminal")  
+  perplexity               (cmd-button "/Users/m/.config/focus.sh Perplexity")  
+  sillytavern              (cmd-button "/Users/m/.config/focus.sh SillyTavern")  
+
+  tradingview              (cmd-button "/Users/m/.config/focus.sh TradingView")  
+  discord                  (cmd-button "/Users/m/.config/focus.sh Discord")  
+  trw                      (cmd-button "/Users/m/.config/focus.sh TRW")  
+
+  musicapp                 (cmd-button "/Users/m/.config/focus.sh Music")  
+  spotify                  (cmd-button "/Users/m/.config/focus.sh Spotify")  
+  soundcloud               (cmd-button "/Users/m/.config/focus.sh SoundCloud")  
+  ableton                  (cmd-button "/Users/m/.config/focus.sh Live")  
+  rekordbox                (cmd-button "/Users/m/.config/focus.sh rekordbox")  
+
+  avp                      (cmd-button "osascript /Users/m/avp.scpt")  
+  tracker                  (cmd-button "sudo -u m shortcuts run \"Activity Tracking\"")  
+  quiet                    (cmd-button "sudo -u m shortcuts run \"toggle do not disturb\"")  
+  chill                    (cmd-button "open https://www.youtube.com/watch?v=ySfbEYyr5jo && open https://rainymood.com")
+
+  org                      (tap-hold 140 @rem (layer-toggle organization))
+  net                      (tap-hold 140 @safari (layer-toggle internet))
+  dev                      (tap-hold 140 @vscode (layer-toggle development))
+  ai                       (tap-hold 140 @llmapp (layer-toggle artificialintelligence))
+  trade                    (tap-hold 140 @tradingview (layer-toggle trading))
+  music                    (tap-hold 140 @musicapp (layer-toggle musiclayer))
+  fastln                    (tap-hold 140 bspc (layer-toggle fastlane))
+
+
+  vterm                    A-M-S-v
   osgpt                    C-A-M-S-s
   term-mic                 (multi-tap 190 @vterm 190 dict @osgpt)
   ret/apos                 (tap-hold 140 ret ')
@@ -37,6 +83,9 @@
   wsf5                     C-5
   wsf6                     C-6
   wsf7                     C-7
+  wsf8                     C-8
+  wsf9                     C-9
+  wsf0                     C-0
   wsfnext                  C-8
   wsfprev                  C-9
   wsf_b_and_f              C-0
@@ -111,10 +160,10 @@
   fn                lctl     lalt     lmet                                 spc                         rmet     ralt     left      down      rght
 )
 (deflayer colemak
-  esc               brdn     brup     mctl            @gpt      dict       zzz       prev     pp       next     mute     vold      volu
-  nubs              @wsf1    @wsf2    @wsf3           @wsf4     @wsf5      @wsf6     @wsf7    _        _        _        @wsfprev  @wsfnext  \
+  esc               brdn     brup     C-M-f3          @gpt      @tracker   @quiet    prev     pp       next     mute     vold      volu
+  nubs              @org     @net     @dev            @discord  @trade     @wsf6     @wsf7    @wsf8    @music    @wsf0    @wsfprev  @wsfnext  \
   tab               q        w        f               p         g          _         _        j        l        u        y         ;         @ret/apos
-  bspc              @lcmd    @lctl    @lalt           @lsft     d          _         _        h        @rsft    @ralt    @rctl     @rcmd
+  bspc           @lcmd    @lctl    @lalt           @lsft     d          _         _        h        @rsft    @ralt    @rctl     @rcmd
   @ds      @ds      z        x        c               v         b          _         @sn      k        m        ,        @sn       _
   fn                _        _        @term-mic                            @under/num                  @nav     @dot/num _         _         _
 )
@@ -129,11 +178,67 @@
 )
 
 (deflayer navigation
-  _                 _        _        _               _          _         _         _        _        _        _        _         _
+  _                 _        _        @avp            _          _         @chill         _        _        _        _        _         _
   _                 @ewsf1   @ewsf2   @ewsf3          @ewsf4     @ewsf5    @ewsf6    @ewsf7   _        _        _        @ewsprev  @ewsnext  @ewskill
   _                 @wkill   @lsp-up  @snipe-or-save  @pg-up-ow  @magit    _         _        @lsp-err @lsp-def @lsp-ref @lsp-sym  @lsp-open end
   @esc/bspc         _        @lsp-dn  @gpt            @pg-dn-ow  @mcursor  _         _        home     left     down     up        rght
-  @del/num @del/num @zap     A-x      @clock-in       @lsp-ext-v @ranger   _         _        @bkill   @bmax    @bprev   @bnext    _
+  @del/num @del/num @zap     C-x      @clock-in       @lsp-ext-v @ranger   _         _        @bkill   @bmax    @bprev   @bnext    _
   fn                _        _        @powerthesaurus                      -                           _        _        _         _         _
 )
 
+(deflayer organization
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ @note @obs @cal @finder _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ fn _ _ _ _ _ _ _ _ _
+)
+(deflayer internet
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ @discord _ @mail _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ fn _ _ _ _ _ _ _ _ _
+)
+(deflayer development
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ @dify @dagster @emacs _ @terminal _ _ _ _ _ _ _ _ _
+ @proxmox _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ fn _ _ _ _ _ _ _ _ _
+)
+(deflayer artificialintelligence
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ @sillytavern @perplexity _ @llmterminal _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ fn _ _ _ _ _ _ _ _ _
+)
+(deflayer trading
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ @discord @trw @finder _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ fn _ _ _ _ _ _ _ _ _
+)
+(deflayer musiclayer
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ @rekordbox @ableton _ @spotify @soundcloud _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ fn _ _ _ _ _ _ _ _ _
+)
+(deflayer fastlane
+ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ _ @discord @safari @emacs @vscode _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ fn _ _ _ _ _ _ _ _ _
+)
